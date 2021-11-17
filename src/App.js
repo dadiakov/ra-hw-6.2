@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <button onClick={sender}>Отправить запрос</button>
   );
 }
 
-export default App;
+const sendData = {
+  "id": 1,
+  "content": "То, что было введно в поле ввода"
+}
+
+function sender() {
+  fetch('http://localhost:7777/notes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(sendData)
+  }).then(response => response.json()).then(data => console.log(data))
+}
