@@ -9,22 +9,19 @@ export default class Crud extends React.Component {
       this.onChangeHandler = this.onChangeHandler.bind(this);
       this.submitHandler = this.submitHandler.bind(this);
       this.refreshData = this.refreshData.bind(this);
-    //   this.id = 0;
     }
     componentDidMount() {
       this.getData();
-    //   this.setState({ data: actualData });
-    //   this.id = actualData.length;
     }
   
     getData() {
-      fetch('http://localhost:7777/notes')
+      fetch(process.env.REACT_APP_DATA_URL)
         .then(response => response.json())
         .then(data => this.setState({ data: data }))
     }
   
     cardDelete(id) {
-      fetch(`http://localhost:7777/notes/${id}`, {
+      fetch(process.env.REACT_APP_DATA_URL + id, {
             method: 'DELETE'
         })
         .then(response => response.ok ? this.getData() : null);
@@ -35,7 +32,7 @@ export default class Crud extends React.Component {
     }
   
     submitHandler(evt) {
-      fetch('http://localhost:7777/notes', {
+      fetch(process.env.REACT_APP_DATA_URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

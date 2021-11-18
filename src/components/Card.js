@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Card({ data, cardDelete, id }) {
     return (
@@ -12,3 +13,9 @@ export default function Card({ data, cardDelete, id }) {
       </React.Fragment>
     );
   }
+
+Card.propTypes = {
+  data: PropTypes.string.isRequired,
+  cardDelete: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired
+}
