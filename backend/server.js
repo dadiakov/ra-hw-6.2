@@ -13,7 +13,10 @@ app.use(koaBody({
     json: true,
   }));
 
-const notes = [];
+const notes = [{
+    "id": 1,
+    "content": "То, что было введно в поле ввода"
+  }];
 let nextId = 1;
 
 const router = new Router();
